@@ -11,7 +11,7 @@ const props = defineProps<{
   pullout?: boolean;
 }>();
 
-const getImageURL = computed(() => `/images/${props.src}`);
+const getImageURL = computed(() => `/turntable-presentation/images/${props.src}`);
 </script>
 
 <style scoped>

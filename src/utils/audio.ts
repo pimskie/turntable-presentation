@@ -1,7 +1,7 @@
 import { context, mainVolume } from '../config/audio';
 
 const loadBuffer = async (filename: string) => {
-  const path = `/audio/${filename}`;
+  const path = `/turntable-presentation/audio/${filename}`;
 
   const response = await fetch(path);
 
