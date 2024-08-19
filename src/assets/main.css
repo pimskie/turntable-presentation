@@ -1,0 +1,9 @@
+@import 'open-props/style';
+
+@import 'open-props/normalize';
+@import 'open-props/buttons';
+
+.container {
+  margin-inline: auto;
+  max-width: 50rem;
+}
