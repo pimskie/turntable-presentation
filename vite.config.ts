@@ -8,9 +8,7 @@ export default defineConfig({
   plugins: [vue()],
 
   base: '/turntable-presentation/',
-  build: {
-    outDir: 'scratch-townhall'
-  },
+
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
