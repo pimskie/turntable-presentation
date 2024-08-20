@@ -2,15 +2,22 @@
   <PHeading>Offset it</PHeading>
 
   <PCodeImage src="offset.png" alt="" :pullout="true" />
-  <PButton @click="toggle">{{ label }}</PButton>
-  <input type="range" min="-2" max="2" step="0.1" v-model.number="playbackSpeed" />
 
-  <br />
-  {{ playingTimeDisplay }}
+  <PControls>
+    <PButton @click="toggle">{{ label }}</PButton>
+    <input type="range" min="-2" max="2" step="0.1" v-model.number="playbackSpeed" />
+
+    <div>
+      <POutput label="Speed" :value="playbackSpeed" />
+      <POutput label="Playtime" :value="playingTimeDisplay" />
+    </div>
+  </PControls>
 </template>
 
 <script setup lang="ts">
 import PButton from '@/components/PButton.vue';
+import PControls from '@/components/PControls.vue';
+import POutput from '@/components/POutput.vue';
 import PHeading from '@/components/PHeading.vue';
 import PCodeImage from '@/components/PCodeImage.vue';
 import { playSource, loadBuffer } from '@/utils/audio';
@@ -36,7 +43,7 @@ const playbackSpeedCorrected = computed(() => {
 
 const isReversed = computed(() => playbackSpeed.value < 0);
 
-const playingTimeDisplay = computed(() => playingTime.value.toFixed(2));
+const playingTimeDisplay = computed(() => Number(playingTime.value.toFixed(2)));
 
 let rafId: number | null = null;
 let previousUpdateTime: number;

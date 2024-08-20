@@ -12,9 +12,3 @@ withDefaults(
   }
 );
 </script>
-
-<style scoped>
-.heading {
-  margin-block: 0 var(--size-3);
-}
-</style>

@@ -2,22 +2,19 @@
   <PHeading>Reverse it</PHeading>
 
   <PCodeImage src="reverse.png" alt="" />
-  <PButton @click="toggle">{{ label }}</PButton>
-  <input type="range" min="0.1" max="2" step="0.1" v-model="playbackSpeed" />
+  <PControls>
+    <PButton @click="toggle">{{ label }}</PButton>
+    <input type="range" min="0.1" max="2" step="0.1" v-model="playbackSpeed" />
 
-  <div class="footer">
-    <a
-      href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer/getChannelData"
-      target="_blank"
-    >
-      getChannelData MDN
-    </a>
-  </div>
+    <POutput label="Speed" :value="playbackSpeed" />
+  </PControls>
 </template>
 
 <script setup lang="ts">
 import PButton from '@/components/PButton.vue';
 import PHeading from '@/components/PHeading.vue';
+import PControls from '@/components/PControls.vue';
+import POutput from '@/components/POutput.vue';
 import PCodeImage from '@/components/PCodeImage.vue';
 import { playSource, loadBuffer } from '@/utils/audio';
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';

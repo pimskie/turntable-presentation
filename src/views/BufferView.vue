@@ -2,13 +2,17 @@
   <PHeading>Buffer it</PHeading>
 
   <PCodeImage src="loading.png" alt="" />
-  <PButton @click="toggle">{{ label }}</PButton>
+
+  <PControls>
+    <PButton @click="toggle">{{ label }}</PButton>
+  </PControls>
 </template>
 
 <script setup lang="ts">
 import { useStop } from '@/composables/useStop';
 import PButton from '@/components/PButton.vue';
 import PHeading from '@/components/PHeading.vue';
+import PControls from '@/components/PControls.vue';
 import PCodeImage from '@/components/PCodeImage.vue';
 import { playSource, loadBuffer } from '@/utils/audio';
 import { computed, onMounted, onUnmounted, ref } from 'vue';

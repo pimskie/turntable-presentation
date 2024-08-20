@@ -1,21 +1,24 @@
 <template>
   <PHeading>Track it</PHeading>
 
-  <PCodeImage src="track.png" alt="" />
-  <PButton @click="toggle">{{ label }}</PButton>
-  <input type="range" min="-2" max="2" step="0.1" v-model.number="playbackSpeed" />
+  <PCodeImage src="track2.png" alt="" />
 
-  <br />
-  {{ playbackSpeed }}
-
-  <br />
-  {{ playingTimeDisplay }}
+  <PControls>
+    <PButton @click="toggle">{{ label }}</PButton>
+    <input type="range" min="-2" max="2" step="0.1" v-model.number="playbackSpeed" />
+    <div>
+      <POutput label="Speed" :value="playbackSpeed" />
+      <POutput label="Playtime" :value="playingTimeDisplay" />
+    </div>
+  </PControls>
 </template>
 
 <script setup lang="ts">
 import PButton from '@/components/PButton.vue';
 import PHeading from '@/components/PHeading.vue';
 import PCodeImage from '@/components/PCodeImage.vue';
+import POutput from '@/components/POutput.vue';
+import PControls from '@/components/PControls.vue';
 import { playSource, loadBuffer } from '@/utils/audio';
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { context } from '@/config/audio';
@@ -37,7 +40,7 @@ const playbackSpeedCorrected = computed(() => {
   return speed || 0.001;
 });
 
-const playingTimeDisplay = computed(() => playingTime.value.toFixed(2));
+const playingTimeDisplay = computed(() => Number(playingTime.value.toFixed(2)));
 
 let rafId: number | null = null;
 let previousUpdateTime: number;

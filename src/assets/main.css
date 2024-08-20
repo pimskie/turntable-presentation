@@ -3,6 +3,10 @@
 @import 'open-props/normalize';
 @import 'open-props/buttons';
 
+:where(html) {
+  --spacing-default: var(--size-4);
+}
+
 .container {
   margin-inline: auto;
   max-width: 50rem;

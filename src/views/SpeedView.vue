@@ -2,14 +2,20 @@
   <PHeading>Setting speed</PHeading>
 
   <PCodeImage src="speed.png" alt="" />
-  <PButton @click="toggle">{{ label }}</PButton>
-  <input type="range" min="0.1" max="2" step="0.1" v-model="playbackSpeed" />
-  <input type="checkbox" v-model="rampToValue" />
+
+  <PControls>
+    <PButton @click="toggle">{{ label }}</PButton>
+    <input type="range" min="0.1" max="2" step="0.1" v-model="playbackSpeed" />
+    <POutput label="Speed" :value="playbackSpeed" />
+    <input type="checkbox" v-model="rampToValue" />
+  </PControls>
 </template>
 
 <script setup lang="ts">
 import PButton from '@/components/PButton.vue';
 import PHeading from '@/components/PHeading.vue';
+import POutput from '@/components/POutput.vue';
+import PControls from '@/components/PControls.vue';
 import PCodeImage from '@/components/PCodeImage.vue';
 import { playSource, loadBuffer } from '@/utils/audio';
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
@@ -47,7 +53,7 @@ const updateSpeed = () => {
 
   if (rampToValue.value) {
     source.playbackRate.cancelScheduledValues(currentTime);
-    source.playbackRate.linearRampToValueAtTime(playbackSpeed.value, currentTime + 1);
+    source.playbackRate.linearRampToValueAtTime(playbackSpeed.value, currentTime + 1.5);
   } else {
     source.playbackRate.setValueAtTime(playbackSpeed.value, currentTime);
   }

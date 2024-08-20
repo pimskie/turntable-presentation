@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "open-props": "^1.7.5",
+    "vite-svg-loader": "^5.1.0",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },

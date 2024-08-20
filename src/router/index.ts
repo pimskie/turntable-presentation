@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LoadingView from '../views/LoadingView.vue';
+import BufferView from '../views/BufferView.vue';
 import SpeedView from '../views/SpeedView.vue';
 import ReverseView from '../views/ReverseView.vue';
 import SwitchView from '../views/SwitchView.vue';
@@ -11,32 +11,32 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: LoadingView
+      name: 'buffer-it',
+      component: BufferView
     },
     {
       path: '/speed',
-      name: 'speed',
+      name: 'setting-speed',
       component: SpeedView
     },
     {
       path: '/reverse',
-      name: 'reverse',
+      name: 'reverse-it',
       component: ReverseView
     },
     {
       path: '/switch',
-      name: 'switch',
+      name: 'switch-it',
       component: SwitchView
     },
     {
       path: '/track',
-      name: 'track',
+      name: 'track-it',
       component: TrackView
     },
     {
       path: '/offset',
-      name: 'offset',
+      name: 'offset-it',
       component: OffsetView
     }
   ]

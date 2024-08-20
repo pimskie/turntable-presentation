@@ -4,9 +4,10 @@
 
     <main class="main">
       <div class="container">
-        <RouterView />
-
-        <PNavigation />
+        <div class="stack">
+          <RouterView />
+          <PNavigation />
+        </div>
       </div>
     </main>
   </div>
@@ -21,5 +22,11 @@ import PNavigation from './components/PNavigation.vue';
 <style scoped>
 .layout {
   padding-block: var(--size-3);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-default);
 }
 </style>
