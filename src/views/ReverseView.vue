@@ -1,7 +1,7 @@
 <template>
   <PHeading>Reverse it</PHeading>
 
-  <PCodeImage src="reverse.png" alt="" />
+  <PCodeImage src="reverse2.png" alt="" />
   <PControls>
     <PButton @click="toggle">{{ label }}</PButton>
     <input type="range" min="0.1" max="2" step="0.1" v-model="playbackSpeed" />
