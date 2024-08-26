@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import BufferView from '../views/BufferView.vue';
 import SpeedView from '../views/SpeedView.vue';
 import ReverseView from '../views/ReverseView.vue';
@@ -7,7 +7,7 @@ import TrackView from '../views/TrackView.vue';
 import OffsetView from '../views/OffsetView.vue';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
