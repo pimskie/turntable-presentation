@@ -7,6 +7,11 @@
     <input type="range" min="0.1" max="2" step="0.1" v-model="playbackSpeed" />
 
     <POutput label="Speed" :value="playbackSpeed" />
+
+    <label>
+      Reverse:
+      <input type="checkbox" v-model="reverse" />
+    </label>
   </PControls>
 </template>
 
@@ -20,14 +25,26 @@ import { playSource, loadBuffer } from '@/utils/audio';
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { context } from '@/config/audio';
 
+let audioBuffer: AudioBuffer;
 let audioBufferReversed: AudioBuffer;
+let audioBufferPlaying: AudioBuffer;
+
 let source: AudioBufferSourceNode | null;
 
 const isPlaying = ref(false);
 const label = computed(() => (isPlaying.value ? 'Stop' : 'Play'));
 const playbackSpeed = ref(1);
+const reverse = ref(false);
 
-watch(playbackSpeed, () => updateSpeed());
+watch(playbackSpeed, () => setPlaybackSpeed());
+
+watch(reverse, () => {
+  audioBufferPlaying = reverse.value ? audioBufferReversed : audioBuffer;
+
+  start();
+
+  setPlaybackSpeed();
+});
 
 const stop = () => {
   if (!source) {
@@ -42,10 +59,10 @@ const stop = () => {
 const start = () => {
   stop();
 
-  source = playSource(audioBufferReversed);
+  source = playSource(audioBufferPlaying);
   isPlaying.value = true;
 
-  updateSpeed();
+  setPlaybackSpeed();
 };
 
 const toggle = () => {
@@ -56,7 +73,7 @@ const toggle = () => {
   }
 };
 
-const updateSpeed = () => {
+const setPlaybackSpeed = () => {
   if (!source) {
     return;
   }
@@ -65,7 +82,9 @@ const updateSpeed = () => {
 };
 
 onMounted(async () => {
-  ({ audioBufferReversed } = await loadBuffer('music.mp3'));
+  ({ audioBufferReversed, audioBuffer } = await loadBuffer('music.mp3'));
+
+  audioBufferPlaying = audioBuffer;
 });
 
 onUnmounted(() => {

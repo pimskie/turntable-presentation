@@ -6,8 +6,13 @@
   <PControls>
     <PButton @click="toggle">{{ label }}</PButton>
     <input type="range" min="0.1" max="2" step="0.1" v-model="playbackSpeed" />
+
     <POutput label="Speed" :value="playbackSpeed" />
-    <input type="checkbox" v-model="rampToValue" />
+
+    <label>
+      Ramp to value:
+      <input type="checkbox" v-model="rampToValue" />
+    </label>
   </PControls>
 </template>
 
